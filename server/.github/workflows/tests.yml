@@ -3,7 +3,7 @@ name: E2E Tests
 on:
   pull_request:
     branches:
-      - main
+      - master
     types: [opened, reopened, labeled, unlabeled, synchronize]
 
 jobs:
