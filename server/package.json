@@ -12,6 +12,7 @@
     "db:migrate": "drizzle-kit migrate",
     "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
+    "build": "tsup-node",
     "docker-compose": "docker compose up -d"
   },
   "keywords": [],
@@ -39,6 +40,7 @@
     "@types/node": "^24.2.0",
     "dotenv-cli": "^10.0.0",
     "drizzle-kit": "^0.31.4",
+    "tsup": "^8.5.0",
     "tsx": "^4.20.3",
     "typescript": "^5.9.2",
     "vite-tsconfig-paths": "^5.1.4",
