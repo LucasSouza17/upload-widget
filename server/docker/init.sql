@@ -1,1 +1,1 @@
-CREATE DATABASE upload_widget_db;
+CREATE DATABASE upload_widget_db_test;

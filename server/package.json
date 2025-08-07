@@ -6,10 +6,11 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch --env-file .env src/infra/http/server.ts",
-    "test": "dotenv -e .env.test -- vitest run",
-    "test:watch": "dotenv -e .env.test -- vitest",
+    "test": "pnpm run db:migrate:test && dotenv -e .env.test -- vitest run",
+    "test:watch": "pnpm run db:migrate:test && dotenv -e .env.test -- vitest",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "docker-compose": "docker compose up -d"
   },
@@ -24,6 +25,7 @@
     "@fastify/multipart": "^9.0.3",
     "@fastify/swagger": "^9.5.1",
     "@fastify/swagger-ui": "^5.2.3",
+    "dayjs": "^1.11.13",
     "drizzle-orm": "^0.44.4",
     "fastify": "^5.4.0",
     "fastify-type-provider-zod": "^5.0.2",
@@ -32,6 +34,7 @@
     "zod": "^4.0.14"
   },
   "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
     "@types/node": "^24.2.0",
     "dotenv-cli": "^10.0.0",
     "drizzle-kit": "^0.31.4",

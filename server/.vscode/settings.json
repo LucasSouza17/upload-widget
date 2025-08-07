@@ -6,12 +6,10 @@
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
     ".vscode": true,
-    "docker": true,
     "node_modules": true
   },
   "hide-files.files": [
     ".vscode",
-    "docker",
     "node_modules"
   ],
   "editor.formatOnSave": true,

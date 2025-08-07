@@ -26,6 +26,9 @@ dependencies:
   '@fastify/swagger-ui':
     specifier: ^5.2.3
     version: 5.2.3
+  dayjs:
+    specifier: ^1.11.13
+    version: 1.11.13
   drizzle-orm:
     specifier: ^0.44.4
     version: 0.44.4(postgres@3.4.7)
@@ -46,6 +49,9 @@ dependencies:
     version: 4.0.14
 
 devDependencies:
+  '@faker-js/faker':
+    specifier: ^9.9.0
+    version: 9.9.0
   '@types/node':
     specifier: ^24.2.0
     version: 24.2.0
@@ -1204,6 +1210,11 @@ packages:
     dev: true
     optional: true
 
+  /@faker-js/faker@9.9.0:
+    resolution: {integrity: sha512-OEl393iCOoo/z8bMezRlJu+GlRGlsKbUAN7jKB6LhnKoqKve5DXRpalbItIIcwnCjs1k/FOPjFzcA6Qn+H+YbA==}
+    engines: {node: '>=18.0.0', npm: '>=9.0.0'}
+    dev: true
+
   /@fastify/accept-negotiator@2.0.1:
     resolution: {integrity: sha512-/c/TW2bO/v9JeEgoD/g1G5GxGeCF1Hafdf79WPmUlgYiBXummY0oX3VVq4yFkKKVBKDNlaDUYoab7g38RpPqCQ==}
     dev: false
@@ -2216,6 +2227,10 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+
+  /dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
+    dev: false
 
   /debug@4.4.1:
     resolution: {integrity: sha512-KcKCqiftBJcZr++7ykoDIEwSa3XWowTfNPo92BYxjXiyYEVrUQh2aLyhxBCwww+heortUFxEJYcRzosstTEBYQ==}
