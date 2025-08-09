@@ -4,16 +4,17 @@ import { UploadWidgetHeader } from "./upload-widget-header";
 import { UploadWidgetUploadList } from "./upload-widget-upload-list";
 import { UploadWidgetMinimizedButton } from "./upload-widget-minimized-button";
 import { motion, useCycle } from 'motion/react'
+import { usePendingUploads } from "../store/uploads";
 
 export function UploadWidget() {
-  const isThereAnyPendingUpload = true
+  const { isThereAnyPendingUploads } = usePendingUploads();
 
   const [isWidgetOpen, toogleWidgetOpen] = useCycle(false, true)
 
   return (
     <Collapsible.Root onOpenChange={() => toogleWidgetOpen()} asChild>
       <motion.div
-        data-progress={isThereAnyPendingUpload}
+        data-progress={isThereAnyPendingUploads}
         className="bg-zinc-900 overflow-hidden max-w-[360px] rounded-xl data-[state=open]:shadow-shape border border-transparent animate-border data-[state=closed]:rounded-3xl data-[state=closed]:data-[progress=false]:shadow-shape data-[state=closed]:data-[progress=true]:[background:linear-gradient(45deg,#09090B,theme(colors.zinc.900)_50%,#09090B)_padding-box,conic-gradient(from_var(--border-angle),theme(colors.zinc.700/.48)_80%,_theme(colors.indigo.500)_86%,_theme(colors.indigo.300)_90%,_theme(colors.indigo.500)_94%,_theme(colors.zinc.600/.48))_border-box]"
         animate={isWidgetOpen ? 'open' : 'closed'}
         variants={{
@@ -21,7 +22,7 @@ export function UploadWidget() {
             width: 'max-content',
             height: 44,
             transition: {
-              type: 'spring'
+              type: 'tween'
             }
           },
           open: {

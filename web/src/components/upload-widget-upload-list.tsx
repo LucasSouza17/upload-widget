@@ -6,9 +6,9 @@ export function UploadWidgetUploadList() {
   const isUploadListEmpty = uploads.size === 0
 
   return (
-    <div className="px-3 flex flex-col gap-3">
+    <div className="px-3 flex flex-col gap-3 max-h-[360px] overflow-y-auto scrollbar-modern">
       <span className="text-xs font-medium">Uploaded files{' '}
-        <span className="text-zinc-400">(2)</span>
+        <span className="text-zinc-400">({uploads.size})</span>
       </span>
 
       {isUploadListEmpty ? (
