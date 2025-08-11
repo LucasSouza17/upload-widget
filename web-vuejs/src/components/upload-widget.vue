@@ -1,11 +1,15 @@
 <script setup lang="ts">
-  import { motion } from 'motion-v';
+  import { motion, VariantType } from 'motion-v';
   import { ref } from 'vue';
   import { CollapsibleContent, CollapsibleRoot } from 'reka-ui'
+  import UploadWidgetHeader from '@/components/upload-widget-header.vue';
+  import UploadWidgetDropzone from '@/components/upload-widget-dropzone.vue';
+  import UploadWidgetUploadList from '@/components/upload-widget-upload-list.vue';
+
 
   const widgetOpen = ref(false)
 
-  const variants = {
+  const variants: Record<string, VariantType> = {
     closed: {
       width: 'max-content',
       height: '44px',
@@ -38,7 +42,13 @@
       <CollapsibleContent>
         <UploadWidgetHeader />
 
-        <UploadWidgetDropzone />
+        <div class="d-flex flex-column ga-4 py-3">
+          <UploadWidgetDropzone />
+
+          <v-divider color="zinc500" />
+
+          <UploadWidgetUploadList />
+        </div>
       </CollapsibleContent>
     </motion.div>
   </CollapsibleRoot>

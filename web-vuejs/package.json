@@ -13,6 +13,7 @@
   "dependencies": {
     "@iconify/vue": "^5.0.0",
     "@mdi/font": "7.4.47",
+    "axios": "^1.11.0",
     "motion-v": "^1.7.0",
     "pinia": "^3.0.3",
     "reka-ui": "^2.4.1",

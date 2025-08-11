@@ -13,5 +13,7 @@ declare module 'vue' {
     UploadWidgetHeader: typeof import('./src/components/upload-widget-header.vue')['default']
     UploadWidgetMinimizedButton: typeof import('./src/components/upload-widget-minimized-button.vue')['default']
     UploadWidgetTitle: typeof import('./src/components/upload-widget-title.vue')['default']
+    UploadWidgetUploadItem: typeof import('./src/components/upload-widget-upload-item.vue')['default']
+    UploadWidgetUploadList: typeof import('./src/components/upload-widget-upload-list.vue')['default']
   }
 }

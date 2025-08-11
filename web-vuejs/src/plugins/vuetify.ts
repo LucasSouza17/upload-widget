@@ -20,7 +20,6 @@ export default createVuetify({
       dark: {
         dark: true,
         colors: tailwindColors,
-
       },
     },
   },
@@ -29,6 +28,6 @@ export default createVuetify({
       style: {
         fontFamily: "'Inter', sans-serif",
       }
-    }
+    },
   },
 })
