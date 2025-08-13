@@ -13,6 +13,7 @@
     "db:migrate:test": "dotenv -e .env.test -- drizzle-kit migrate",
     "db:studio": "drizzle-kit studio",
     "build": "tsup-node",
+    "start": "node dist/infra/http/server.js",
     "docker-compose": "docker compose up -d"
   },
   "keywords": [],
