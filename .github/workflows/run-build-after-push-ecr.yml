@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         id: install-dependencies
         run: |
-          pnpm install
+          cd server && pnpm install
 
       - name: Configure AWS Credentials
         id: configure-aws-credentials
