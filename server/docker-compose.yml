@@ -4,11 +4,28 @@ services:
   pg: 
     container_name: "db"
     image: bitnami/postgresql:latest
+    restart: unless-stopped
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=upload_widget_db
+      - POSTGRES_USER=$POSTGRES_USER
+      - POSTGRES_PASSWORD=$POSTGRES_PASSWORD
+      - POSTGRES_DB=$POSTGRES_DB
     volumes:
       - './docker:/docker-entrypoint-initdb.d'
+  
+  widget-server:
+    container_name: "widget-server-app"
+    restart: unless-stopped
+    depends_on:
+      - pg
+    build: .
+    ports: 
+      - 3333:3333
+    environment:
+      - DATABASE_URL=$DATABASE_URL
+      - CLOUDFARE_ACCOUNT_ID=$CLOUDFARE_ACCOUNT_ID
+      - CLOUDFARE_ACCESS_KEY_ID=$CLOUDFARE_ACCESS_KEY_ID
+      - CLOUDFARE_SECRET_ACCESS_KEY=$CLOUDFARE_SECRET_ACCESS_KEY
+      - CLOUDFARE_BUCKET=$CLOUDFARE_BUCKET
+      - CLOUDFARE_PUBLIC_URL=$CLOUDFARE_PUBLIC_URL
