@@ -3,5 +3,20 @@ import postgres from 'postgres'
 import { env } from '@/env'
 import { schema } from './schemas'
 
-export const pg = postgres(env.DATABASE_URL)
+const {
+  POSTGRES_DB,
+  POSTGRES_PASSWORD,
+  POSTGRES_USER,
+  POSTGRES_PORT
+} = env
+
+const host =
+  process.env.DATABASE_HOST ||
+  (process.env.NODE_ENV === "production" ? "pg" : "localhost");
+
+export const DATABASE_URL = `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${host}:${POSTGRES_PORT}/${POSTGRES_DB}`;
+
+console.log('DATABASE_URL', DATABASE_URL)
+
+export const pg = postgres(DATABASE_URL)
 export const db = drizzle(pg, { schema: schema })

@@ -28,8 +28,10 @@ type GetUploadsOutput = {
 export async function getUploads(
   input: GetUploadsInput
 ): Promise<Either<never, GetUploadsOutput>> {
+  console.log('{ searchQuery, sortBy, sortDirection, page, pageSize }')
   const { searchQuery, sortBy, sortDirection, page, pageSize } =
     getUploadsInput.parse(input)
+
 
   const [uploads, [{ total }]] = await Promise.all([
     db
