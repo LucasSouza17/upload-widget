@@ -16,7 +16,5 @@ const host =
 
 export const DATABASE_URL = `postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@${host}:${POSTGRES_PORT}/${POSTGRES_DB}`;
 
-console.log('DATABASE_URL', DATABASE_URL)
-
 export const pg = postgres(DATABASE_URL)
 export const db = drizzle(pg, { schema: schema })
