@@ -83,19 +83,36 @@ jobs:
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ steps.generate-tag.outputs.sha }}
       
-      - name: Deploy to App Runner
-        id: deploy-app-runner
-        uses: awslabs/amazon-app-runner-deploy@main
+      - name: Render task definition
+        id: render-task-definition
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
-          service: ${{ vars.APP_RUNNER_SERVICE_NAME }}
-          image: |
-            ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ steps.generate-tag.outputs.sha }}
-          region: ${{ vars.AWS_REGION }}
-          access-role-arn: ${{ secrets.ROLE_ARN}}
-          cpu: 1
-          memory: 2
-          port: 3333
-          wait-for-service-stability-seconds: 360
+          task-definition: .aws/task-definition.json
+          container-name: ${{ vars.ECS_CONTAINER_NAME }}
+          image: ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ steps.generate-tag.outputs.sha }}
+          
+      - name: Deploy to ECS Service
+        id: deploy-ecs-service
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: ${{ steps.render-task-definition.outputs.task-definition }}
+          service: ${{ vars.ECS_SERVICE_NAME }}
+          cluster: ${{ vars.ECS_CLUSTER_NAME }}
+          wait-for-service-stability: true
 
-      - name: App Runner Check
-        run: echo "App Running... ${{ steps.deploy-app-runner.outputs.service-url }}"
+      # - name: Deploy to App Runner
+      #   id: deploy-app-runner
+      #   uses: awslabs/amazon-app-runner-deploy@main
+      #   with:
+      #     service: ${{ vars.APP_RUNNER_SERVICE_NAME }}
+      #     image: |
+      #       ${{ steps.login-ecr.outputs.registry }}/${{ vars.ECR_REPOSITORY }}:${{ steps.generate-tag.outputs.sha }}
+      #     region: ${{ vars.AWS_REGION }}
+      #     access-role-arn: ${{ secrets.ROLE_ARN}}
+      #     cpu: 1
+      #     memory: 2
+      #     port: 3333
+      #     wait-for-service-stability-seconds: 360
+
+      # - name: App Runner Check
+      #   run: echo "App Running... ${{ steps.deploy-app-runner.outputs.service-url }}"
